@@ -84,8 +84,7 @@ module USCoreTestKit
         reference_type = reference.resource_type
 
         begin
-          # TODO: this request isn't persisted
-          resolved_resource = reference.read(fhir_client)
+          resolved_resource = fhir_read(reference.resource_type, reference.reference_id)&.resource
         rescue ClientException => e
           # report error if the resource is a US Core resource type
           messages << {
